@@ -223,12 +223,18 @@ export default function CelestialDetail({ onNavigate }: CelestialDetailProps) {
 
 {/* CTA Button */}
       <section className="px-4 py-6 sm:py-8 max-w-lg mx-auto">
-        <button
-          onClick={() => setIsTicketModalOpen(true)}
-          className="w-full py-3 sm:py-4 bg-amber-500 text-black text-sm sm:text-base font-medium tracking-widest hover:bg-amber-400 transition-colors"
-        >
-          RESERVAR MI LUGAR
-        </button>
+        {event?.soldOut ? (
+          <div className="w-full py-3 sm:py-4 bg-red-600/20 border border-red-600 text-red-500 text-sm sm:text-base font-medium tracking-widest text-center cursor-not-allowed">
+            SOLD OUT
+          </div>
+        ) : (
+          <button
+            onClick={() => setIsTicketModalOpen(true)}
+            className="w-full py-3 sm:py-4 bg-amber-500 text-black text-sm sm:text-base font-medium tracking-widest hover:bg-amber-400 transition-colors"
+          >
+            RESERVAR MI LUGAR
+          </button>
+        )}
         <p className="text-center text-white/40 text-[9px] sm:text-[10px] tracking-wide sm:tracking-wider mt-2 sm:mt-3">
           CUPOS LIMITADOS. RESERVA AHORA.
         </p>

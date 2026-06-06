@@ -222,9 +222,15 @@ export default function LaFestaDetail({ onNavigate }: LaFestaDetailProps) {
               <span className="text-lg sm:text-2xl font-light text-white">{event?.ticketPrice?.replace(" COP", "") || "$45.000"}</span>
               <span className="text-white/60 text-[10px] sm:text-xs ml-1">COP</span>
             </div>
-            <button onClick={() => setIsTicketModalOpen(true)} className="w-full py-1.5 sm:py-2 border border-white/30 text-white text-[10px] sm:text-xs tracking-widest hover:bg-white/10 transition-colors">
-              COMPRAR
-            </button>
+            {event?.soldOut ? (
+              <div className="w-full py-1.5 sm:py-2 border border-red-600/50 bg-red-600/10 text-red-500 text-[10px] sm:text-xs tracking-widest text-center cursor-not-allowed">
+                SOLD OUT
+              </div>
+            ) : (
+              <button onClick={() => setIsTicketModalOpen(true)} className="w-full py-1.5 sm:py-2 border border-white/30 text-white text-[10px] sm:text-xs tracking-widest hover:bg-white/10 transition-colors">
+                COMPRAR
+              </button>
+            )}
           </div>
 
           {/* VIP */}
@@ -245,9 +251,15 @@ export default function LaFestaDetail({ onNavigate }: LaFestaDetailProps) {
               <span className="text-amber-500/60 text-[10px] sm:text-xs ml-1">COP</span>
             </div>
             <p className="text-white/40 text-[6px] sm:text-[8px] mb-2 sm:mb-3">{event?.vipNote || "NORMALMENTE $700K - $2M"}</p>
-            <button onClick={() => setIsTicketModalOpen(true)} className="w-full py-1.5 sm:py-2 border border-amber-500/50 text-amber-500 text-[10px] sm:text-xs tracking-widest hover:bg-amber-500 hover:text-black transition-colors">
-              COMPRAR
-            </button>
+            {event?.soldOut ? (
+              <div className="w-full py-1.5 sm:py-2 border border-red-600/50 bg-red-600/10 text-red-500 text-[10px] sm:text-xs tracking-widest text-center cursor-not-allowed">
+                SOLD OUT
+              </div>
+            ) : (
+              <button onClick={() => setIsTicketModalOpen(true)} className="w-full py-1.5 sm:py-2 border border-amber-500/50 text-amber-500 text-[10px] sm:text-xs tracking-widest hover:bg-amber-500 hover:text-black transition-colors">
+                COMPRAR
+              </button>
+            )}
           </div>
         </div>
 
@@ -275,12 +287,18 @@ export default function LaFestaDetail({ onNavigate }: LaFestaDetailProps) {
           <div className="absolute inset-0 bg-black/60 sm:bg-black/70" />
           <div className="relative z-10 flex flex-col items-center justify-center h-full">
             <p className="text-white text-xs sm:text-sm tracking-widest mb-3 sm:mb-4">LOS CUPOS SON LIMITADOS.</p>
-            <button onClick={() => setIsTicketModalOpen(true)} className="px-4 sm:px-8 py-2 sm:py-3 bg-amber-500 text-black font-medium text-[10px] sm:text-xs tracking-widest hover:bg-amber-400 transition-colors flex items-center gap-2 mx-auto">
-              COMPRAR ENTRADAS
-              <svg className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M13 5l7 7-7 7" />
-              </svg>
-            </button>
+            {event?.soldOut ? (
+              <div className="px-4 sm:px-8 py-2 sm:py-3 bg-red-600/20 border border-red-600 text-red-500 font-medium text-[10px] sm:text-xs tracking-widest cursor-not-allowed inline-flex items-center gap-2 mx-auto">
+                SOLD OUT
+              </div>
+            ) : (
+              <button onClick={() => setIsTicketModalOpen(true)} className="px-4 sm:px-8 py-2 sm:py-3 bg-amber-500 text-black font-medium text-[10px] sm:text-xs tracking-widest hover:bg-amber-400 transition-colors flex items-center gap-2 mx-auto">
+                COMPRAR ENTRADAS
+                <svg className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </section>

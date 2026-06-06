@@ -4,6 +4,7 @@ import { useState } from "react"
 import { X, Clock, MapPin, Calendar, Users, ExternalLink, ArrowLeft, Play, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react"
 import HamburgerMenu from "./hamburger-menu"
 import TicketSelectorModal from "./ticket-selector-modal"
+import { useWeekendEvents } from "@/lib/events-store"
 
 interface BuyTicketsDetailProps {
   onNavigate: (page: string) => void
@@ -34,6 +35,10 @@ export default function BuyTicketsDetail({ onNavigate }: BuyTicketsDetailProps) 
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0)
   const [isTicketModalOpen, setIsTicketModalOpen] = useState(false)
+
+  // Read SOLD OUT state controlled from the admin panel (WEEKEND EVENTS section)
+  const { events: weekendEventsData } = useWeekendEvents()
+  const isSoldOut = weekendEventsData.some((e) => e.soldOut)
 
   const galleryMedia = [
     { type: "image", src: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=80", alt: "Weekend event 1" },

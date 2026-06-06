@@ -226,9 +226,15 @@ export default function ChampionshipDetail({ onNavigate }: ChampionshipDetailPro
               <span className="text-base sm:text-lg md:text-2xl font-light text-red-500">{event?.ticketPrice || "$250.000"}</span>
               <span className="text-red-500/60 text-[8px] sm:text-[10px] md:text-xs ml-1">COP</span>
             </div>
-            <button onClick={() => setIsTicketModalOpen(true)} className="w-full py-1.5 sm:py-2 border border-white/30 text-white text-[9px] sm:text-[10px] md:text-xs tracking-widest hover:bg-white/10 transition-colors">
-              COMPRAR
-            </button>
+            {event?.soldOut ? (
+              <div className="w-full py-1.5 sm:py-2 border border-red-600/50 bg-red-600/10 text-red-500 text-[9px] sm:text-[10px] md:text-xs tracking-widest text-center cursor-not-allowed">
+                SOLD OUT
+              </div>
+            ) : (
+              <button onClick={() => setIsTicketModalOpen(true)} className="w-full py-1.5 sm:py-2 border border-white/30 text-white text-[9px] sm:text-[10px] md:text-xs tracking-widest hover:bg-white/10 transition-colors">
+                COMPRAR
+              </button>
+            )}
           </div>
 
           {/* Fight Pass */}
@@ -244,9 +250,15 @@ export default function ChampionshipDetail({ onNavigate }: ChampionshipDetailPro
               <span className="text-base sm:text-lg md:text-2xl font-light text-red-500">{event?.vipPrice || "$100.000"}</span>
               <span className="text-red-500/60 text-[8px] sm:text-[10px] md:text-xs ml-1">COP</span>
             </div>
-            <button onClick={() => setIsTicketModalOpen(true)} className="w-full py-1.5 sm:py-2 border border-red-500/50 text-red-500 text-[9px] sm:text-[10px] md:text-xs tracking-widest hover:bg-red-500 hover:text-white transition-colors">
-              COMPRAR
-            </button>
+            {event?.soldOut ? (
+              <div className="w-full py-1.5 sm:py-2 border border-red-600/50 bg-red-600/10 text-red-500 text-[9px] sm:text-[10px] md:text-xs tracking-widest text-center cursor-not-allowed">
+                SOLD OUT
+              </div>
+            ) : (
+              <button onClick={() => setIsTicketModalOpen(true)} className="w-full py-1.5 sm:py-2 border border-red-500/50 text-red-500 text-[9px] sm:text-[10px] md:text-xs tracking-widest hover:bg-red-500 hover:text-white transition-colors">
+                COMPRAR
+              </button>
+            )}
           </div>
         </div>
 
@@ -278,12 +290,18 @@ export default function ChampionshipDetail({ onNavigate }: ChampionshipDetailPro
               <p className="text-white text-sm sm:text-base md:text-xl lg:text-2xl tracking-wider font-light">LOS CAMPEONES NO NACEN,</p>
               <p className="text-red-500 text-sm sm:text-base md:text-xl lg:text-2xl tracking-wider font-light italic">SE HACEN AQUI.</p>
             </div>
-            <button onClick={() => setIsTicketModalOpen(true)} className="px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-red-600 text-white text-[10px] sm:text-xs md:text-sm font-medium tracking-widest hover:bg-red-700 transition-colors flex items-center gap-2 whitespace-nowrap">
-              ASEGURA TU LUGAR
-              <svg className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
+            {event?.soldOut ? (
+              <div className="px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-red-600/20 border border-red-600 text-red-500 text-[10px] sm:text-xs md:text-sm font-medium tracking-widest cursor-not-allowed inline-flex items-center gap-2 whitespace-nowrap">
+                SOLD OUT
+              </div>
+            ) : (
+              <button onClick={() => setIsTicketModalOpen(true)} className="px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-red-600 text-white text-[10px] sm:text-xs md:text-sm font-medium tracking-widest hover:bg-red-700 transition-colors flex items-center gap-2 whitespace-nowrap">
+                ASEGURA TU LUGAR
+                <svg className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </section>
